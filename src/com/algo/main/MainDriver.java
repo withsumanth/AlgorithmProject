@@ -2,6 +2,7 @@ package com.algo.main;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import com.algo.functions.FitnessFunction;
 import com.algo.model.GenoType;
@@ -12,35 +13,43 @@ import com.algo.model.Reactor;
 
 public class MainDriver {
 
+	static List<GenoType> gList;
+	static Population population;
+	
 	public static void main(String[] args) {
-		Reactor r = new Reactor();
-		Population initialPopulation = createNewPopulation();
-		for(GenoType g:initialPopulation.getGenotype()) {
+		population = new Population();
+		gList = new ArrayList();
+		GenoType g = new GenoType();
+		List<Reactor> rList = new ArrayList();
+		for(int i=0;i<4;i++) {
+			Random random = new Random();
+			double diameter = random.nextInt(6);
+			Reactor r = addReactor(diameter);
+			rList.add(r);
+		}
+		g.setReactorList(rList);
+		g = calculateOrder(g);
+		gList.add(g);
+		for(int i=0;i<10;i++) {
+			crossOver(gList.get(gList.size()-1));
+			mutate();
+		}
+		/*for(GenoType g:initialPopulation.getGenotype()) {
 			for(Order o:g.getPhenotype().getOrder()) {
 				System.out.println(o.getReactor().getDiameter());
 				System.out.println(o.getCoeff());
 				System.out.println(o.getFitnessVal());
 			}
-		}
+		}*/
 	}
-
-	private static Population createNewPopulation() {
-		Population pop = new Population();
-		List<Reactor> rList = new ArrayList();
-		Reactor r1 = new Reactor();
-		r1.setDiameter(0.3);
-		rList.add(r1);
-		Reactor r2 = new Reactor();
-		r2.setDiameter(2.0);
-		rList.add(r2);
-		Reactor r3 = new Reactor();
-		r3.setDiameter(3.0);
-		rList.add(r3);
-		Reactor r4 = new Reactor();
-		r4.setDiameter(5.0);
-		rList.add(r4);
-		GenoType g = new GenoType();
-		g.setReactorList(rList);
+	
+	private static Reactor addReactor(double diameter) {
+		Reactor r = new Reactor();
+		r.setDiameter(diameter);
+		return r;
+	}
+	
+	private static GenoType calculateOrder(GenoType g) {
 		FitnessFunction f = new FitnessFunction();
 		List<Double> coeffList = new ArrayList();
 		for(Reactor rs:g.getReactorList()) {
@@ -57,11 +66,24 @@ public class MainDriver {
 			orderList.add(o);
 		}
 		g.getPhenotype().setOrder(orderList);
-		List<GenoType> gentList = new ArrayList();
-		gentList.add(g);
-		pop.setGenotype(gentList);
-		return pop;
+		return g;
 	}
-
 	
+	private static void crossOver(GenoType g) {
+		List<Reactor> r = g.getReactorList();
+		int[] child=new String[father.length];
+		  int crossPoint = Math.random()*father.length;//make a crossover point
+		  for (int i=0;i<father.length;++i)
+		  {
+		    if (i<crossPoint)
+		      child[i]=father[i];
+		    else
+		      child[i]=mother[i];
+		  }
+		  return child;
+	}
+	
+	private static void mutate() {
+		
+	}
 }
