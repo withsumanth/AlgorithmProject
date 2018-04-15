@@ -1,21 +1,23 @@
 package com.algo.model;
 
-import java.util.List;
+/**
+ * @author Sumanth
+ * @author Kavya
+ */
 
-import com.algo.functions.FitnessFunction;
+import java.util.List;
 
 public class Phenotype {
 	private List<Order> order;
 	private double avgHeatRelease;
-	
+
 	public Phenotype() {
-		
+
 	}
 
 	public List<Order> getOrder() {
 		return order;
 	}
-
 
 	public double getAvgHeatRelease() {
 		return avgHeatRelease;
@@ -28,6 +30,5 @@ public class Phenotype {
 	public void setOrder(List<Order> order) {
 		this.order = order;
 	}
-	
-	
+
 }

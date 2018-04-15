@@ -1,12 +1,17 @@
 package com.algo.model;
 
+/**
+ * @author Sumanth
+ * @author Kavya
+ */
+
 public class Order {
 	private Reactor reactor;
 	private double fitnessVal;
 	private double coeff;
-	
+
 	public Order() {
-		
+
 	}
 
 	public Reactor getReactor() {
@@ -32,6 +37,5 @@ public class Order {
 	public void setCoeff(double coeff) {
 		this.coeff = coeff;
 	}
-	
-	
+
 }

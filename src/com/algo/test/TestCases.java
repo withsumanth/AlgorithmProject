@@ -1,5 +1,10 @@
 package com.algo.test;
 
+/**
+ * @author Sumanth
+ * @author Kavya
+ */
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.text.DecimalFormat;
@@ -12,15 +17,16 @@ import com.algo.functions.FitnessFunction;
 import com.algo.model.Reactor;
 
 class TestCases {
-	
-	TestCases(){
-		
+
+	FitnessFunction f;
+
+	TestCases() {
+		f = new FitnessFunction();
 	}
-	List<Double> values = new ArrayList();
-	FitnessFunction f = new FitnessFunction();
 
 	@Test
 	void gatest1() {
+		List<Double> values = new ArrayList<Double>();
 		values.add(1.0);
 		values.add(2.0);
 		values.add(3.0);
@@ -48,31 +54,31 @@ class TestCases {
 		assertEquals(formatNum.format(heatCoeff5), String.valueOf(180.26));
 		assertEquals(formatNum.format(heatCoeff6), String.valueOf(56.08));
 	}
-	
+
 	@Test
 	void gatest2() {
-		List<Double> coeffList =new ArrayList();
+		List<Double> coeffList = new ArrayList<Double>();
 		coeffList.add(667.16);
 		coeffList.add(548.91);
 		coeffList.add(427.12);
 		coeffList.add(304.03);
 		coeffList.add(180.26);
 		coeffList.add(56.08);
-		assertEquals(f.total(coeffList),2183.56);
+		assertEquals(f.total(coeffList), 2183.56);
 	}
-	
+
 	@Test
 	void gatest3() {
-		assertEquals(f.fitnessValue(667.16, 2183.56),0.30553774569968306);
+		assertEquals(f.fitnessValue(667.16, 2183.56), 0.30553774569968306);
 	}
 
 	@Test
 	void gatest4() {
-		double[] d = {1.0,2.0};
-		String[] str = {"001010","010100"};
+		double[] d = { 1.0, 2.0 };
+		String[] str = { "001010", "010100" };
 		String[] str2 = f.doubleToBin(d);
-		assertEquals(str2[0],str[0]);
-		assertEquals(str2[1],str[1]);
+		assertEquals(str2[0], str[0]);
+		assertEquals(str2[1], str[1]);
 	}
-	
+
 }

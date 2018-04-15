@@ -1,15 +1,18 @@
 package com.algo.model;
 
-import java.util.List;
+/**
+ * @author Sumanth
+ * @author Kavya
+ */
 
-import com.algo.functions.FitnessFunction;
+import java.util.List;
 
 public class GenoType {
 	private List<Reactor> reactorList;
 	private List<Double> coeffList;
 	private Phenotype phenotype;
 	String[] representation;
-	
+
 	public GenoType() {
 		phenotype = new Phenotype();
 	}
@@ -45,5 +48,5 @@ public class GenoType {
 	public void setPhenotype(Phenotype phenotype) {
 		this.phenotype = phenotype;
 	}
-	
+
 }
