@@ -8,9 +8,18 @@ public class GenoType {
 	private List<Reactor> reactorList;
 	private List<Double> coeffList;
 	private Phenotype phenotype;
+	String[] representation;
 	
 	public GenoType() {
 		phenotype = new Phenotype();
+	}
+
+	public String[] getRepresentation() {
+		return representation;
+	}
+
+	public void setRepresentation(String[] representation) {
+		this.representation = representation;
 	}
 
 	public List<Double> getCoeffList() {

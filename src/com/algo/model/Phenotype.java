@@ -6,6 +6,7 @@ import com.algo.functions.FitnessFunction;
 
 public class Phenotype {
 	private List<Order> order;
+	private double avgHeatRelease;
 	
 	public Phenotype() {
 		
@@ -15,6 +16,14 @@ public class Phenotype {
 		return order;
 	}
 
+
+	public double getAvgHeatRelease() {
+		return avgHeatRelease;
+	}
+
+	public void setAvgHeatRelease(double avgHeatRelease) {
+		this.avgHeatRelease = avgHeatRelease;
+	}
 
 	public void setOrder(List<Order> order) {
 		this.order = order;
