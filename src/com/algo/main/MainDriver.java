@@ -51,7 +51,7 @@ public class MainDriver {
 			gList.add(g);
 			boolean check = false;
 			for(Order o:g.getPhenotype().getOrder()) {
-				if(o.getCoeff()>746.8) {
+				if(o.getCoeff()>746.8 && o.getFitnessVal()>0.7) {
 					check=true;
 				}
 			}
@@ -67,10 +67,10 @@ public class MainDriver {
 		for(GenoType gen:population.getGenotype()) {
 				System.out.print("Diameter: "+gen.getReactorList().get(0).getDiameter()+","+gen.getReactorList().get(1).getDiameter()+","+gen.getReactorList().get(2).getDiameter()+","+gen.getReactorList().get(3).getDiameter());
 				System.out.print("  ");
-				System.out.print("Heat Released: "+f.format(gen.getPhenotype().getOrder().get(0).getCoeff())+","+f.format(gen.getPhenotype().getOrder().get(1).getCoeff())+","+f.format(gen.getPhenotype().getOrder().get(2).getCoeff())+","+f.format(gen.getPhenotype().getOrder().get(3).getCoeff()));
+				System.out.print("Heat Transferred: "+f.format(gen.getPhenotype().getOrder().get(0).getCoeff())+","+f.format(gen.getPhenotype().getOrder().get(1).getCoeff())+","+f.format(gen.getPhenotype().getOrder().get(2).getCoeff())+","+f.format(gen.getPhenotype().getOrder().get(3).getCoeff()));
 				System.out.print("  ");
 				System.out.print("Fitness Value: "+f.format(gen.getPhenotype().getOrder().get(0).getFitnessVal())+","+f.format(gen.getPhenotype().getOrder().get(1).getFitnessVal())+","+f.format(gen.getPhenotype().getOrder().get(2).getFitnessVal())+","+f.format(gen.getPhenotype().getOrder().get(3).getFitnessVal()));
-				System.out.print(" Average Heat Released: "+f.format(gen.getPhenotype().getAvgHeatRelease()));
+				System.out.print(" Average Heat Transferred: "+f.format(gen.getPhenotype().getAvgHeatRelease()));
 				System.out.println("");
 		}
 	}
