@@ -44,7 +44,7 @@ public class FitnessFunction {
 			fath_moth[count] = r[i];
 			count++;
 		}
-		fath_moth = findChild(fath_moth);
+		fath_moth = characterInterchange(fath_moth);
 		rNew[0] = fath_moth[0];
 		rNew[1] = fath_moth[1];
 		count =0;
@@ -52,13 +52,13 @@ public class FitnessFunction {
 			fath_moth[count] = r[i];
 			count++;
 		}
-		fath_moth = findChild(fath_moth);
+		fath_moth = characterInterchange(fath_moth);
 		rNew[2] = fath_moth[0];
 		rNew[3] = fath_moth[1];
 		return rNew;
 	}
 	
-	public String[] findChild(String[] fath_moth) {
+	public String[] characterInterchange(String[] fath_moth) {
 		String[] child = new String[2];
 		char[] father = fath_moth[0].toCharArray();
 		char[] mother = fath_moth[1].toCharArray();
