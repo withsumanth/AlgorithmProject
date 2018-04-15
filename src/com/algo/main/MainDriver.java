@@ -2,8 +2,13 @@ package com.algo.main;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import com.algo.functions.FitnessFunction;
 import com.algo.model.GenoType;
@@ -44,7 +49,13 @@ public class MainDriver {
 			g.setReactorList(rList);
 			g = calculateOrder(g);
 			gList.add(g);
-			if(g.getPhenotype().getOrder().get(0).getFitnessVal()>0.22 && g.getPhenotype().getOrder().get(1).getFitnessVal()>0.22 && g.getPhenotype().getOrder().get(2).getFitnessVal()>0.22 && g.getPhenotype().getOrder().get(3).getFitnessVal()>0.22 && g.getPhenotype().getAvgHeatRelease()>400.0) {
+			boolean check = false;
+			for(Order o:g.getPhenotype().getOrder()) {
+				if(o.getCoeff()>746.8) {
+					check=true;
+				}
+			}
+			if(check) {
 				break;
 			}else {
 				continue;
@@ -95,9 +106,16 @@ public class MainDriver {
 	
 	private static GenoType crossOver(GenoType g) {
 		double [] diameters = new double[4];
+		Map<Double,Double> map = new HashMap<>();
 		for(int i = 0;i<g.getPhenotype().getOrder().size();i++) {
-			diameters[i] = g.getPhenotype().getOrder().get(i).getReactor().getDiameter(); 
+			map.put(g.getPhenotype().getOrder().get(i).getFitnessVal(),g.getPhenotype().getOrder().get(i).getReactor().getDiameter()) ; 
 		}
+		Map<Double,Double> sortedMap = 
+				map.entrySet().stream()
+			    .sorted(Entry.comparingByValue())
+			    .collect(Collectors.toMap(Entry::getKey, Entry::getValue,
+			                              (e1, e2) -> e1, LinkedHashMap::new));
+		diameters = f.calculateDiameter(sortedMap);
 		String [] representation = f.doubleToBin(diameters);
 		representation = f.getChild(representation);
 		g.setRepresentation(representation);

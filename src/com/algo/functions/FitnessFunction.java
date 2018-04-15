@@ -1,6 +1,7 @@
 package com.algo.functions;
 
 import java.util.List;
+import java.util.Map;
 
 import com.algo.model.Phenotype;
 import com.algo.model.Reactor;
@@ -73,5 +74,26 @@ public class FitnessFunction {
 		}
 		child[1] = String.valueOf(c);
 		return child;
+	}
+
+	public double[] calculateDiameter(Map<Double, Double> sortedMap) {
+		double[] d = new double[4];
+		int count = 0;
+		int index = 0;
+		double temp = 0.0;
+		for (Map.Entry<Double, Double> entry : sortedMap.entrySet()) {
+			if(count==0) {
+				d[index++] = entry.getValue();
+				temp = entry.getValue();
+			}else if(count==1) {
+				d[index++] = temp;
+				temp = entry.getValue();
+			}else {
+				d[index++] = temp;
+				temp = entry.getValue();
+			}
+			count++;
+		}
+		return d;
 	}
 }
