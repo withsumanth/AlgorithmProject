@@ -189,7 +189,6 @@ public class MainDriver {
 	private static void createAndShowGui(int size,Population p) {
 	      List<Double> scores = new ArrayList<Double>();
 	      int maxDataPoints = size;
-	      int maxScore = 800;
 	      for (int i = 0; i < maxDataPoints ; i++) {
 	         scores.add( p.getGenotype().get(i).getPhenotype().getAvgHeatRelease());
 	      }
