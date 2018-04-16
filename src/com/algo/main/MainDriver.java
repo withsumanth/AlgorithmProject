@@ -16,6 +16,10 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Random;
 import java.util.stream.Collectors;
+import com.algo.graph.DrawGraph;
+
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 import com.algo.functions.FitnessFunction;
 import com.algo.model.GenoType;
@@ -87,6 +91,11 @@ public class MainDriver {
 			System.out.print(" Average Heat Transferred: " + f.format(gen.getPhenotype().getAvgHeatRelease()));
 			System.out.println("");
 		}
+		SwingUtilities.invokeLater(new Runnable() {
+	         public void run() {
+	            createAndShowGui(population.getGenotype().size(),population);
+	         }
+	      });
 	}
 
 	/**
@@ -176,4 +185,21 @@ public class MainDriver {
 		}
 		return output;
 	}
+	
+	private static void createAndShowGui(int size,Population p) {
+	      List<Double> scores = new ArrayList<Double>();
+	      int maxDataPoints = size;
+	      int maxScore = 800;
+	      for (int i = 0; i < maxDataPoints ; i++) {
+	         scores.add( p.getGenotype().get(i).getPhenotype().getAvgHeatRelease());
+	      }
+	      DrawGraph mainPanel = new DrawGraph(scores);
+
+	      JFrame frame = new JFrame("DrawGraph");
+	      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	      frame.getContentPane().add(mainPanel);
+	      frame.pack();
+	      frame.setLocationByPlatform(true);
+	      frame.setVisible(true);
+	   }
 }
