@@ -9,6 +9,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
+
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -16,6 +19,7 @@ import org.junit.jupiter.api.Test;
 import com.algo.functions.FitnessFunction;
 import com.algo.model.Reactor;
 
+@RunWith(JUnitPlatform.class)
 class TestCases {
 
 	FitnessFunction f;
